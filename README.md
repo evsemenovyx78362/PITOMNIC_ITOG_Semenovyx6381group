@@ -447,3 +447,8 @@ k@k-VirtualBox:\~/Pitomnik/PetsDirectory$ history \> history.txt
  1591  history \> history.txt
 
 ```
+## 6\.
+
+![](diagram.png)
+
+
