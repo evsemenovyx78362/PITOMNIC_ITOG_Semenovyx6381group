@@ -324,7 +324,7 @@ mysql  Ver 8.0.39 for Linux on x86\_64 (MySQL Community Server \- GPL)
 ```
 ## 4\.
 ```
-leej@leej-VirtualBox:\~/Pitomnik2/PetsDirectory$ sudo apt-get install cowsay
+k@k-VirtualBox:\~/Pitomnik/PetsDirectory$ sudo apt-get install cowsay
 
 Чтение списков пакетов… Готово
 
@@ -362,11 +362,11 @@ http://ru.archive.ubuntu.com/ubuntu jammy/universe amd64 cowsay all 3.03+dfsg2-8
 
 Обрабатываются триггеры для man-db (2.10.2-1) …
 
-leej@leej-VirtualBox:\~/Pitomnik2/PetsDirectory$ cowsay "Здарова отец\!"
+k@k-VirtualBox:\~/Pitomnik/PetsDirectory$ cowsay "Приветствую\!"
 
  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-\< Здарова отец\! \>
+\< Приветствую\! \>
 
  \---------------
 
@@ -380,7 +380,7 @@ leej@leej-VirtualBox:\~/Pitomnik2/PetsDirectory$ cowsay "Здарова отец
 
             	|| 	||
 
-leej@leej-VirtualBox:\~/Pitomnik2/PetsDirectory$ sudo apt-get remove cowsay
+k@k-VirtualBox:\~/Pitomnik/PetsDirectory$ sudo apt-get remove cowsay
 
 Чтение списков пакетов… Готово
 
@@ -403,4 +403,47 @@ leej@leej-VirtualBox:\~/Pitomnik2/PetsDirectory$ sudo apt-get remove cowsay
 Удаляется cowsay (3.03+dfsg2-8) …
 
 Обрабатываются триггеры для man-db (2.10.2-1) …
+``` 
+## 5\.  
+``` 
+k@k-VirtualBox:\~/Pitomnik/PetsDirectory$ history \> history.txt
+
+1573  cd Pitomnik/
+
+ 1574  cat \> Pets.txt
+
+ 1575  cat \> PackAnimals.txt
+
+ 1576  cat Pets.txt PackAnimals.txt \> Animals.txt
+
+ 1577  cat Animals.txt
+
+ 1578  mv Animals.txt HumanFriends.txt
+
+ 1579  ls
+
+ 1580  mkdir PetsDirectory
+
+ 1581  mv HumanFriends.txt PetsDirectory/
+
+ 1582  cd PetsDirectory/
+
+ 1583  ls
+
+ 1584  sudo apt-get update
+
+ 1585  sudo apt-get intstall mysql-server
+
+ 1586  sudo apt-get install mysql-server
+
+ 1587  mysql \--version
+
+ 1588  sudo apt-get install cowsay
+
+ 1589\* cowsay "Здарова отец
+
+ 1590  sudo apt-get remove cowsay
+
+ 1591  history \> history.txt
+
 ```
