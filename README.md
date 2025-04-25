@@ -450,5 +450,223 @@ k@k-VirtualBox:\~/Pitomnik/PetsDirectory$ history \> history.txt
 ## 6\.
 
 ![](diagram.png)
+## 7\. 
+```
+mysql\> CREATE DATABASE HumanFriends;
+
+Query OK, 1 row affected (0,14 sec)
+
+mysql\> USE HumanFriends;
+
+Database changed
+
+mysql\>	CREATE TABLE Pets (
+
+	\-\>    	ID INT AUTO\_INCREMENT PRIMARY KEY,
+
+	\-\>    	Name VARCHAR(50),
+
+	\-\>    	Type VARCHAR(20),
+
+	\-\>    	BirthDate DATE,
+
+	\-\>    	Commands TEXT
+
+	\-\>	);
+
+Query OK, 0 rows affected (0,31 sec)
+
+mysql\>
+
+mysql\>	CREATE TABLE PackAnimals (
+
+	\-\>    	ID INT AUTO\_INCREMENT PRIMARY KEY,
+
+	\-\>    	Name VARCHAR(50),
+
+	\-\>    	Type VARCHAR(20),
+
+	\-\>    	BirthDate DATE,
+
+	\-\>    	Commands TEXT
+
+	\-\>	);
+
+Query OK, 0 rows affected (0,26 sec)
+
+mysql\>    
+
+mysql\> INSERT INTO Pets (Name, Type, BirthDate, Commands) VALUES
+
+	\-\> ('Fido', 'Dog', '2020-01-01', 'Sit, Stay, Fetch'),
+
+	\-\> ('Whiskers', 'Cat', '2019-05-15', 'Sit, Pounce'),
+
+	\-\> ('Hammy', 'Hamster', '2021-03-10', 'Roll, Hide'),
+
+	\-\> ('Buddy', 'Dog', '2018-12-10', 'Sit, Paw, Bark'),
+
+	\-\> ('Smudge', 'Cat', '2020-02-20', 'Sit, Pounce, Scratch'),
+
+	\-\> ('Peanut', 'Hamster', '2021-08-01', 'Roll, Spin'),
+
+	\-\> ('Bella', 'Dog', '2019-11-11', 'Sit, Stay, Roll'),
+
+	\-\> ('Oliver', 'Cat', '2020-06-30', 'Meow, Scratch, Jump');
+
+Query OK, 8 rows affected (0,17 sec)
+
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql\> INSERT INTO PackAnimals (Name, Type, BirthDate, Commands) VALUES
+
+	\-\> ('Thunder', 'Horse', '2015-07-21', 'Trot, Canter, Gallop'),
+
+	\-\> ('Sandy', 'Camel', '2016-11-03', 'Walk, Carry Load'),
+
+	\-\> ('Eeyore', 'Donkey', '2017-09-18', 'Walk, Carry Load, Bray'),
+
+	\-\> ('Storm', 'Horse', '2014-05-05', 'Trot, Canter'),
+
+	\-\> ('Dune', 'Camel', '2018-12-12', 'Walk, Sit'),
+
+	\-\> ('Burro', 'Donkey', '2019-01-23', 'Walk, Bray, Kick'),
+
+	\-\> ('Blaze', 'Horse', '2016-02-29', 'Trot, Jump, Gallop'),
+
+	\-\> ('Sahara', 'Camel', '2015-08-14', 'Walk, Run');
+
+Query OK, 8 rows affected (0,05 sec)
+
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql\> DELETE FROM PackAnimals WHERE Type \= 'Camel';
+
+Query OK, 3 rows affected (0,03 sec)
+
+mysql\> CREATE TABLE CombinedAnimals AS
+
+	\-\> SELECT \* FROM Pets
+
+	\-\> UNION ALL
+
+	\-\> SELECT \* FROM PackAnimals;
+
+Query OK, 13 rows affected (0,17 sec)
+
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql\> CREATE TABLE YoungAnimals AS
+
+	\-\> SELECT
+
+	\-\> 	ID,
+
+	\-\> 	Name,
+
+	\-\> 	Type,
+
+	\-\> 	BirthDate,
+
+	\-\> 	Commands,
+
+	\-\> 	FLOOR(DATEDIFF(CURDATE(), BirthDate)/30) AS AgeInMonths
+
+	\-\> FROM
+
+	\-\> 	CombinedAnimals
+
+	\-\> WHERE
+
+	\-\> 	DATEDIFF(CURDATE(), BirthDate) BETWEEN 365 AND 1095;
+
+Query OK, 0 rows affected (0,23 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql\> CREATE TABLE AllAnimals AS
+
+	\-\> SELECT
+
+	\-\> 	'Pets' AS Category,
+
+	\-\> 	ID,
+
+	\-\> 	Name,
+
+	\-\> 	Type,
+
+	\-\> 	BirthDate,
+
+	\-\> 	Commands
+
+	\-\> FROM
+
+	\-\> 	Pets
+
+	\-\> UNION ALL
+
+	\-\> SELECT
+
+	\-\> 	'PackAnimals' AS Category,
+
+	\-\> 	ID,
+
+	\-\> 	Name,
+
+	\-\> 	Type,
+
+	\-\> 	BirthDate,
+
+	\-\> 	Commands
+
+	\-\> FROM
+
+	\-\> 	PackAnimals
+
+	\-\> UNION ALL
+
+	\-\> SELECT
+
+	\-\> 	'CombinedAnimals' AS Category,
+
+	\-\> 	ID,
+
+	\-\> 	Name,
+
+	\-\> 	Type,
+
+	\-\> 	BirthDate,
+
+	\-\> 	Commands
+
+	\-\> FROM
+
+	\-\> 	CombinedAnimals
+
+	\-\> UNION ALL
+
+	\-\> SELECT
+
+	\-\> 	'YoungAnimals' AS Category,
+
+	\-\> 	ID,
+
+	\-\> 	Name,
+
+	\-\> 	Type,
+
+	\-\> 	BirthDate,
+
+	\-\> 	Commands
+
+	\-\> FROM
+
+	\-\> 	YoungAnimals;
+
+Query OK, 26 rows affected (0,19 sec)
+
+Records: 26  Duplicates: 0  Warnings: 0
+```
 
 
